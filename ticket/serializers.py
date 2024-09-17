@@ -3,6 +3,7 @@ from rest_framework import serializers
 
 
 class TicketSerializer(serializers.ModelSerializer):
+    user_email = serializers.ReadOnlyField(source="user.email")
     class Meta:
         model = Ticket
-        fields = "__all__"
+        fields = ["id", "user_email", "title", "body", "created_at"]
