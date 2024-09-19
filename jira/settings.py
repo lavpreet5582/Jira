@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -162,3 +163,57 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'lsv2885657@gmail.com'  # Your email address
 EMAIL_HOST_PASSWORD = 'lovesingh5582@$'  # Your email password
 DEFAULT_FROM_EMAIL = 'JiraClone@gmail.com'  # Email used in the "From" header
+
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),  # Access token valid for 1 hour
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),  # Refresh token valid for 7 days
+}
+
+
+# settings.py
+
+import os
+
+# settings.py
+
+# settings.py
+
+import os
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',  # Adjust this level as needed
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'custom_logs.log'),
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'DEBUG',  # Adjust this level as needed
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+            'stream': 'ext://sys.stdout',  # Ensure output goes to stdout
+        },
+    },
+    'loggers': {
+        '': {  # The root logger
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',  # Adjust this level as needed
+            'propagate': False,
+        },
+    },
+}
+
